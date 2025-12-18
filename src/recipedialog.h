@@ -3,7 +3,7 @@
 #include <QStandardItemModel>
 #include "recipe.h"
 #include "cookbookdatabase.h"
-
+using namespace std;
 namespace Ui {
 class RecipeDialog;
 }

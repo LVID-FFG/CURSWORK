@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include <libpq-fe.h>
-
+using namespace std;
 class Recipe;
 class Ingredient;
 class CookingStep;
@@ -21,26 +21,26 @@ public:
     int addRecipe(Recipe& recipe);
     bool updateRecipe(const Recipe& recipe);
     bool deleteRecipe(int recipeId);
-    std::shared_ptr<Recipe> getRecipeById(int id);
-    std::vector<std::shared_ptr<Recipe>> getAllRecipes();
+    shared_ptr<Recipe> getRecipeById(int id);
+    vector<shared_ptr<Recipe>> getAllRecipes();
     
-    std::vector<std::string> getAllTags();
+    vector<string> getAllTags();
     
-    std::string getLastError() const { return lastError_; }
+    string getLastError() const { return lastError_; }
     
 private:
     bool createTables();
-    bool saveRecipeTags(int recipeId, const std::vector<std::string>& tags);
-    bool saveRecipeIngredients(int recipeId, const std::vector<Ingredient>& ingredients);
-    bool saveRecipeSteps(int recipeId, const std::vector<CookingStep>& steps);
+    bool saveRecipeTags(int recipeId, const vector<string>& tags);
+    bool saveRecipeIngredients(int recipeId, const vector<Ingredient>& ingredients);
+    bool saveRecipeSteps(int recipeId, const vector<CookingStep>& steps);
     
-    std::vector<std::string> getRecipeTags(int recipeId);
-    std::vector<Ingredient> getRecipeIngredients(int recipeId);
-    std::vector<CookingStep> getRecipeSteps(int recipeId);
+    vector<string> getRecipeTags(int recipeId);
+    vector<Ingredient> getRecipeIngredients(int recipeId);
+    vector<CookingStep> getRecipeSteps(int recipeId);
     
-    std::string escapeString(const std::string& str);
-    bool executeQuery(const std::string& query);
+    string escapeString(const string& str);
+    bool executeQuery(const string& query);
     
     PGconn* conn_;
-    std::string lastError_;
+    string lastError_;
 };

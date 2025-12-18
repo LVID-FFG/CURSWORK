@@ -4,7 +4,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QTimer>
-
+using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
     
@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     qDebug() << "Запуск Кулинарной книги...";
     
-    database = std::make_unique<CookBookDatabase>();
+    database = make_unique<CookBookDatabase>();
     
     if (!database->connect()) {
         QString errorMsg = QString("Не удалось подключиться к базе данных:\n%1\n\n"
@@ -45,8 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDeleteRecipeClicked);
     connect(ui->recipesListWidget, &QListWidget::itemClicked, this, &MainWindow::onRecipeSelected);
     connect(ui->searchEdit, &QLineEdit::textChanged, this, &MainWindow::onSearchTextChanged);
-    connect(ui->tagFilterComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), 
-            this, &MainWindow::onTagFilterChanged);
+    connect(ui->tagFilterComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onTagFilterChanged);
     
     // Выбираем первый рецепт если есть
     if (ui->recipesListWidget->count() > 0) {

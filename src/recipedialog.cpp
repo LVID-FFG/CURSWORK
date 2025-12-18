@@ -2,7 +2,7 @@
 #include "ui_recipedialog.h"
 #include <QMessageBox>
 #include <QInputDialog>
-
+using namespace std;
 RecipeDialog::RecipeDialog(CookBookDatabase* db, Mode mode, QWidget *parent)
     : QDialog(parent), ui(new Ui::RecipeDialog), database_(db), mode_(mode), currentRecipeId_(-1) {
     
@@ -101,15 +101,15 @@ Recipe RecipeDialog::getRecipe() const {
     recipe.setCategory(ui->categoryComboBox->currentText().toStdString());
     
     for (int row = 0; row < ingredientsModel_->rowCount(); ++row) {
-        std::string name = ingredientsModel_->item(row, 0)->text().toStdString();
-        std::string quantity = ingredientsModel_->item(row, 1)->text().toStdString();
-        std::string unit = ingredientsModel_->item(row, 2)->text().toStdString();
+        string name = ingredientsModel_->item(row, 0)->text().toStdString();
+        string quantity = ingredientsModel_->item(row, 1)->text().toStdString();
+        string unit = ingredientsModel_->item(row, 2)->text().toStdString();
         recipe.addIngredient(Ingredient(name, quantity, unit));
     }
     
     for (int row = 0; row < stepsModel_->rowCount(); ++row) {
         int stepNumber = row + 1;
-        std::string description = stepsModel_->item(row, 0)->text().toStdString();
+        string description = stepsModel_->item(row, 0)->text().toStdString();
         recipe.addStep(CookingStep(stepNumber, description));
     }
     

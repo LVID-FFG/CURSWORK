@@ -2,14 +2,14 @@
 #include "mainwindow.h"
 #include <iostream>
 #include <QDebug>
-
+using namespace std;
 int main(int argc, char *argv[]) {
-    std::cout << "=== ЗАПУСК КУЛИНАРНОЙ КНИГИ ===" << std::endl;
+    cout << "=== ЗАПУСК КУЛИНАРНОЙ КНИГИ ===" << endl;
     
     // Отладочная информация
-    std::cout << "argc: " << argc << std::endl;
+    cout << "argc: " << argc << endl;
     for (int i = 0; i < argc; ++i) {
-        std::cout << "argv[" << i << "]: " << argv[i] << std::endl;
+        cout << "argv[" << i << "]: " << argv[i] << endl;
     }
     
     qDebug() << "QT Version:" << QT_VERSION_STR;
@@ -34,11 +34,11 @@ int main(int argc, char *argv[]) {
         qDebug() << "Окно показано, запуск event loop...";
         
         return app.exec();
-    } catch (const std::exception& e) {
-        std::cerr << "ОШИБКА: " << e.what() << std::endl;
+    } catch (const exception& e) {
+        cerr << "ОШИБКА: " << e.what() << endl;
         return 1;
     } catch (...) {
-        std::cerr << "НЕИЗВЕСТНАЯ ОШИБКА" << std::endl;
+        cerr << "НЕИЗВЕСТНАЯ ОШИБКА" << endl;
         return 1;
     }
 }

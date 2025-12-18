@@ -3,7 +3,7 @@
 #include <memory>
 #include <QListWidgetItem>
 #include "cookbookdatabase.h"
-
+using namespace std;
 namespace Ui {
 class MainWindow;
 }
@@ -21,14 +21,14 @@ private slots:
     void onDeleteRecipeClicked();
     void onRecipeSelected(QListWidgetItem* item);
     void onSearchTextChanged(const QString& text);
-    void onTagFilterChanged(int index);  // Добавлено
+    void onTagFilterChanged(int index);
 
 private:
     void loadRecipes();
-    void loadTags();  // Добавлено
-    void applyFilters();  // Добавлено
+    void loadTags();
+    void applyFilters();
     void createDefaultRecipes();
 
     Ui::MainWindow *ui;
-    std::unique_ptr<CookBookDatabase> database;
+    unique_ptr<CookBookDatabase> database;
 };
