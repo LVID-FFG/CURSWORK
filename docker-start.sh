@@ -10,7 +10,7 @@ sudo service postgresql start
 # Ждем пока PostgreSQL полностью запустится
 sleep 5
 
-# ВСЕГДА проверяем и создаем базу данных cookbook и пользователя
+# проверяем и создаем базу данных cookbook и пользователя
 echo "Проверка базы данных cookbook..."
 if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='cookbook'" | grep -q 1; then
     echo "Создание пользователя и базы данных..."
@@ -22,7 +22,7 @@ else
     echo "✓ База данных cookbook уже существует"
 fi
 
-# ВСЕГДА проверяем пользователя
+# проверяем пользователя
 echo "Проверка пользователя cookbookuser..."
 if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='cookbookuser'" | grep -q 1; then
     echo "Создание пользователя cookbookuser..."
@@ -31,7 +31,7 @@ if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='cookbooku
     echo "✓ Пользователь создан"
 fi
 
-# ВСЕГДА устанавливаем пароль
+# устанавливаем пароль
 echo "Установка пароля пользователя..."
 sudo -u postgres psql -c "ALTER USER cookbookuser WITH PASSWORD 'cookbook123';" 2>/dev/null || true
 

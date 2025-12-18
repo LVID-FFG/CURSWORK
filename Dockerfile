@@ -4,7 +4,7 @@ ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Устанавливаем ВСЁ что нужно под root
+# Устанавливаем что нужно под root
 RUN apt-get update && apt-get install -y \
     postgresql-14 postgresql-client-14 postgresql-contrib-14 libpq-dev \
     cmake make g++ pkg-config \
@@ -38,7 +38,7 @@ RUN mkdir -p /app/build && \
         -DPOSTGRESQL_LIBRARY=/usr/lib/x86_64-linux-gnu/libpq.so \
     && make -j$(nproc)
 
-# Создаем пользователя приложения ПОСЛЕ сборки
+# Создаем пользователя приложения после сборки
 RUN useradd -m -u 1000 appuser && \
     echo "appuser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     chown -R appuser:appuser /app
